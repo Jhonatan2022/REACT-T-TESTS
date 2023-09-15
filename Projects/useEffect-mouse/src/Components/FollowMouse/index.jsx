@@ -20,6 +20,20 @@ function FollowMouse() {
     };
   }, [enable]);
 
+  // [] -> solo se ejecuta una vez cuando se monta el componente
+  // [enabled] -> se ejecuta cuando cambia enabled y cuando se monta el componente
+  // undefined -> se ejecuta cada vez que se renderiza el componente
+
+  useEffect(() => {
+    // No cursor
+    document.body.classList.toggle("no-cursor", enable);
+
+    // Clean up function
+    return () => {
+      document.body.classList.remove("no-cursor");
+    };
+  }, [enable]);
+
   return (
     <>
       <div
